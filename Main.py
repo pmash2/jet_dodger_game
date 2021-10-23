@@ -31,7 +31,16 @@ while running:
 
     screen.fill(pygame.Color('white'))
 
-    pygame.draw.circle(screen, (0, 0, 255), (250, 250), 75)
+    surf = pygame.Surface((50, 50))
+    surf_center = (
+        (SCREEN_WIDTH - surf.get_width()) / 2,
+        (SCREEN_HEIGHT - surf.get_height()) / 2
+    )
+
+    surf.fill((0, 0, 0))
+    rect = surf.get_rect()
+
+    screen.blit(surf, surf_center)
 
     pygame.display.flip()
 
