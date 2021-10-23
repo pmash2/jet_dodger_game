@@ -1,6 +1,7 @@
 import pygame
 from Player import Player
 from Enemy import Enemy
+from Cloud import Cloud
 
 from pygame.locals import (
     K_ESCAPE,
@@ -18,11 +19,14 @@ SCREEN_HEIGHT = 600
 screen = pygame.display.set_mode([SCREEN_WIDTH, SCREEN_HEIGHT])
 
 ADDENEMY = pygame.USEREVENT + 1
+ADDCLOUD = pygame.USEREVENT + 2
 pygame.time.set_timer(ADDENEMY, 250)
+pygame.time.set_timer(ADDCLOUD, 1000)
 
 player = Player(SCREEN_WIDTH, SCREEN_HEIGHT)
 
 enemies = pygame.sprite.Group()
+clouds = pygame.sprite.Group()
 all_sprites = pygame.sprite.Group()
 all_sprites.add(player)
 
@@ -41,19 +45,17 @@ while running:
             enemies.add(new_enemy)
             all_sprites.add(new_enemy)
 
+        elif event.type == ADDCLOUD:
+            new_cloud = Cloud(SCREEN_WIDTH, SCREEN_HEIGHT)
+            clouds.add(new_cloud)
+            all_sprites.add(new_cloud)
+
     pressed_keys = pygame.key.get_pressed()
     player.update(pressed_keys)
     enemies.update()
+    clouds.update()
 
-    screen.fill(pygame.Color('black'))
-
-    surf = pygame.Surface((50, 50))
-    surf_center = (
-        (SCREEN_WIDTH - surf.get_width()) / 2,
-        (SCREEN_HEIGHT - surf.get_height()) / 2
-    )
-
-    surf.fill((0, 0, 0))
+    screen.fill(pygame.Color('skyblue'))
 
     for entity in all_sprites:
         screen.blit(entity.surf, entity.rect)
@@ -61,10 +63,6 @@ while running:
     if pygame.sprite.spritecollideany(player, enemies):
         player.kill()
         running = False
-
-    rect = surf.get_rect()
-
-    screen.blit(surf, surf_center)
 
     pygame.display.flip()
 
