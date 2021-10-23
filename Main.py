@@ -1,10 +1,7 @@
 import pygame
+from Player import Player
 
 from pygame.locals import (
-    K_UP,
-    K_DOWN,
-    K_LEFT,
-    K_RIGHT,
     K_ESCAPE,
     KEYDOWN,
     QUIT
@@ -19,6 +16,8 @@ SCREEN_HEIGHT = 600
 
 screen = pygame.display.set_mode([SCREEN_WIDTH, SCREEN_HEIGHT])
 
+player = Player()
+
 running = True
 while running:
     for event in pygame.event.get():
@@ -29,7 +28,10 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-    screen.fill(pygame.Color('white'))
+    pressed_keys = pygame.key.get_pressed()
+    player.update(pressed_keys)
+
+    screen.fill(pygame.Color('black'))
 
     surf = pygame.Surface((50, 50))
     surf_center = (
@@ -38,6 +40,8 @@ while running:
     )
 
     surf.fill((0, 0, 0))
+
+    screen.blit(player.surf, player.rect)
     rect = surf.get_rect()
 
     screen.blit(surf, surf_center)
