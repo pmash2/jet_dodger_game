@@ -17,6 +17,7 @@ SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 
 screen = pygame.display.set_mode([SCREEN_WIDTH, SCREEN_HEIGHT])
+clock = pygame.time.Clock()
 
 ADDENEMY = pygame.USEREVENT + 1
 ADDCLOUD = pygame.USEREVENT + 2
@@ -65,5 +66,7 @@ while running:
         running = False
 
     pygame.display.flip()
+
+    clock.tick(30)
 
 pygame.quit()
