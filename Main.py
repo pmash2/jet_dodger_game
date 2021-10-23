@@ -14,6 +14,9 @@ from pygame.locals import (
 pygame.mixer.init()
 pygame.init()
 
+# Load and play background music
+# Sound source: http://ccmixter.org/files/Apoxode/59262
+# License: https://creativecommons.org/licenses/by/3.0/
 pygame.mixer.music.load("Assets/Audio/Apoxode_-_Electric_1.mp3")
 pygame.mixer.music.play(loops=-1)
 collision_sound = pygame.mixer.Sound("Assets/Audio/Collision.ogg")
