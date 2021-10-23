@@ -15,12 +15,16 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.surf.get_rect()
         self.SCREEN_WIDTH = SCREEN_WIDTH
         self.SCREEN_HEIGHT = SCREEN_HEIGHT
+        self.move_up_sound = pygame.mixer.Sound("Rising_putter.ogg")
+        self.move_down_sound = pygame.mixer.Sound("Falling_putter.ogg")
 
     def update(self, pressed_keys):
         if pressed_keys[K_UP]:
             self.rect.move_ip(0, -5)
+            self.move_up_sound.play()
         if pressed_keys[K_DOWN]:
             self.rect.move_ip(0, 5)
+            self.move_down_sound.play()
         if pressed_keys[K_LEFT]:
             self.rect.move_ip(-5, 0)
         if pressed_keys[K_RIGHT]:

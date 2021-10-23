@@ -11,7 +11,12 @@ from pygame.locals import (
 
 # https://realpython.com/pygame-a-primer/#images-and-rects
 
+pygame.mixer.init()
 pygame.init()
+
+pygame.mixer.music.load("Apoxode_-_Electric_1.mp3")
+pygame.mixer.music.play(loops=-1)
+collision_sound = pygame.mixer.Sound("Collision.ogg")
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
@@ -63,10 +68,15 @@ while running:
 
     if pygame.sprite.spritecollideany(player, enemies):
         player.kill()
+
+        collision_sound.play()
+
         running = False
 
     pygame.display.flip()
 
     clock.tick(30)
 
+pygame.mixer.music.stop()
+pygame.mixer.quit()
 pygame.quit()
