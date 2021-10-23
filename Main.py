@@ -58,6 +58,10 @@ while running:
     for entity in all_sprites:
         screen.blit(entity.surf, entity.rect)
 
+    if pygame.sprite.spritecollideany(player, enemies):
+        player.kill()
+        running = False
+
     rect = surf.get_rect()
 
     screen.blit(surf, surf_center)
