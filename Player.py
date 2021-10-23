@@ -10,13 +10,13 @@ from pygame.locals import(
 class Player(pygame.sprite.Sprite):
     def __init__(self, SCREEN_WIDTH, SCREEN_HEIGHT) -> None:
         super(Player, self).__init__()
-        self.surf = pygame.image.load("jet.png").convert()
+        self.surf = pygame.image.load("Assets/Images/jet.png").convert()
         self.surf.set_colorkey((255, 255, 255), RLEACCEL)
         self.rect = self.surf.get_rect()
         self.SCREEN_WIDTH = SCREEN_WIDTH
         self.SCREEN_HEIGHT = SCREEN_HEIGHT
-        self.move_up_sound = pygame.mixer.Sound("Rising_putter.ogg")
-        self.move_down_sound = pygame.mixer.Sound("Falling_putter.ogg")
+        self.move_up_sound = pygame.mixer.Sound("Assets/Audio/Rising_putter.ogg")
+        self.move_down_sound = pygame.mixer.Sound("Assets/Audio/Falling_putter.ogg")
 
     def update(self, pressed_keys):
         if pressed_keys[K_UP]:

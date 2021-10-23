@@ -14,9 +14,9 @@ from pygame.locals import (
 pygame.mixer.init()
 pygame.init()
 
-pygame.mixer.music.load("Apoxode_-_Electric_1.mp3")
+pygame.mixer.music.load("Assets/Audio/Apoxode_-_Electric_1.mp3")
 pygame.mixer.music.play(loops=-1)
-collision_sound = pygame.mixer.Sound("Collision.ogg")
+collision_sound = pygame.mixer.Sound("Assets/Audio/Collision.ogg")
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
